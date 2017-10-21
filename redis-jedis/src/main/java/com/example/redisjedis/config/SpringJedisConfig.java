@@ -12,33 +12,33 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class SpringJedisConfig {
-  @Value("${redis.host}")
-  private String redisHost;
-
-  @Value("${redis.port}")
-  private int redisPort;
-
-  @Value("${redis.database}")
-  private int database;
-
-  @Bean
-  JedisConnectionFactory jedisConnectionFactory() {
-    JedisConnectionFactory factory = new JedisConnectionFactory();
-    factory.setHostName(redisHost);
-    factory.setPort(redisPort);
-    factory.setDatabase(database);
-    factory.setUsePool(true);
-    return factory;
-  }
-
-  @Bean
-  RedisTemplate< String, Object > redisTemplate() {
-    final RedisTemplate< String, Object > template =  new RedisTemplate< String, Object >();
-    template.setConnectionFactory( jedisConnectionFactory() );
-    template.setKeySerializer( new StringRedisSerializer() );
-    template.setHashValueSerializer( new GenericToStringSerializer< Object >( Object.class ) );
-    template.setValueSerializer( new GenericToStringSerializer< Object >( Object.class ) );
-    return template;
-  }
+//  @Value("${redis.host}")
+//  private String redisHost;
+//
+//  @Value("${redis.port}")
+//  private int redisPort;
+//
+//  @Value("${redis.database}")
+//  private int database;
+//
+//  @Bean
+//  JedisConnectionFactory jedisConnectionFactory() {
+//    JedisConnectionFactory factory = new JedisConnectionFactory();
+//    factory.setHostName(redisHost);
+//    factory.setPort(redisPort);
+//    factory.setDatabase(database);
+//    factory.setUsePool(true);
+//    return factory;
+//  }
+//
+//  @Bean
+//  RedisTemplate< String, Object > redisTemplate() {
+//    final RedisTemplate< String, Object > template =  new RedisTemplate< String, Object >();
+//    template.setConnectionFactory( jedisConnectionFactory() );
+//    template.setKeySerializer( new StringRedisSerializer() );
+//    template.setHashValueSerializer( new GenericToStringSerializer< Object >( Object.class ) );
+//    template.setValueSerializer( new GenericToStringSerializer< Object >( Object.class ) );
+//    return template;
+//  }
 
 }
