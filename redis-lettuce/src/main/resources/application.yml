@@ -1,6 +1,12 @@
 spring:
   application:
       name: redis-lettuce
+  redis:
+    database: 5
+    password:
+    sentinel:
+      master:
+      nodes:
 
 security.ignored: /**
 spring.security.enabled: false
@@ -11,10 +17,4 @@ server:
   contextPath: /redis-lettuce
   port: 8002
 
-redis:
-  database: 5
-  password:
-  sentinel:
-    master: redis-cluster # Default
-    nodes:
 

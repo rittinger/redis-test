@@ -8,6 +8,11 @@ spring:
       master:
       nodes:
 
+security.ignored: /**
+spring.security.enabled: false
+management.security.enabled: false
+security.basic.enabled: false
+
 server:
   contextPath: /redis-jedis
   port: 8001
