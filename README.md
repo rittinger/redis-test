@@ -11,13 +11,15 @@ Project for testing various redis drivers and configurations
 
 ```bash
 # Launch redis-jedis
-java -jar redis-jedis.jar --spring.redis.password=xxx --spring.redis.cluster=redis-cluster --spring.redis.nodes=host:port
-
+java -jar redis-jedis.jar --spring.redis.password=xxx 
+                          --spring.redis.sentinel.master=xxx 
+                          --spring.redis.sentinel.nodes=xxx:1234,xxx:1234
 # Test redis-jedis
 curl localhost:8001/redis-jedis/test?message=hello
 
 # Launch redis-lettuce
-java -jar redis-lettuce.jar --spring.redis.password=xxx --spring.redis.cluster=redis-cluster --spring.redis.nodes=host:port
-
+java -jar redis-lettuce.jar --spring.redis.password=xxx 
+                            --spring.redis.sentinel.master=xxx 
+                            --spring.redis.sentinel.nodes=xxx:1234,xxx:1234
 # Test redis-jedis
-curl localhost:8001/redis-lettuce/test?message=hello
+curl localhost:8002/redis-lettuce/test?message=hello
