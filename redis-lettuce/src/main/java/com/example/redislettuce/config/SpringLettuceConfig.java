@@ -32,25 +32,15 @@ public class SpringLettuceConfig {
 
   @Bean(destroyMethod = "shutdown")
   RedisClient redisClient(ClientResources clientResources) {
-    //RedisURI redisUri = RedisURI.create(redisHost, redisPort);
-    //redisUri.setDatabase(database);
-    //return RedisClient.create(clientResources, redisUri);
-\
     // "redis-sentinel://localhost:26379,localhost:26380/0#mymaster"
-//    RedisURI redisUri = RedisURI.builder()
-//        .withDatabase(database)
-//        .withPassword(password)
-//        .withSentinel(nodes)
-//        .build();
-//
-//    return RedisClient.create(clientResources, redisUri);
+    RedisURI redisUri = RedisURI.builder()
+        .withDatabase(database)
+        .withPassword(password)
+        .withSentinel(nodes)
+        .withSentinelMasterId(master)
+        .build();
 
-    RedisSentinelConfiguration sentinelConfiguration = new RedisSentinelConfiguration()
-        .master(master)
-        .sentinel("localhost", 26379);
-    LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(sentinelConfiguration);
-    lettuceConnectionFactory.setDatabase(database);
-    lettuceConnectionFactory.setPassword(password);
+    return RedisClient.create(clientResources, redisUri);
   }
 
   @Bean(destroyMethod = "close")
